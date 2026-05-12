@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÉCLAT CLINIC｜輝きは、肌の奥から。 - ハイエンド美容皮膚科</title>
+  <meta name="description" content="ドクター監修 × AI肌分析 × 完全オーダーメイドの美容医療。表参道のハイエンド美容皮膚科 ÉCLAT CLINIC。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Shippori+Mincho+B1:wght@400;500;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       ÉCLAT CLINIC LP - Design Tokens
+       ============================================ */
+    :root {
+      --color-primary: #2c1d14;
+      --color-accent: #b08d57;
+      --color-accent-light: #d4a574;
+      --color-bg: #faf6f0;
+      --color-bg-alt: #ede4d3;
+      --color-bg-dark: #1a120c;
+      --color-text: #2c1d14;
+      --color-text-light: #6b5d4f;
+      --color-line: #d9cfc0;
+      --gradient-gold: linear-gradient(135deg, #b08d57, #d4a574);
+
+      --serif-en: 'Cormorant Garamond', 'Times New Roman', serif;
+      --mincho: 'Shippori Mincho B1', 'Yu Mincho', serif;
+      --sans-jp: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+    }
+
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans-jp);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "palt";
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+
+    /* Layout */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+    section { padding: 120px 0; position: relative; overflow: hidden; }
+
+    /* ============================================
+       Decorative: EN-label + gold line (全セクション共通)
+       ============================================ */
+    .en-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--serif-en);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .en-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+    .en-label .num {
+      font-style: italic;
+      opacity: 0.7;
+      letter-spacing: 0.1em;
+      margin-left: 6px;
+    }
+
+    .section-title {
+      font-family: var(--mincho);
+      font-size: clamp(30px, 4.4vw, 56px);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+    .section-title .accent { color: var(--color-accent); }
+    .section-sub {
+      font-size: 16px;
+      color: var(--color-text-light);
+      line-height: 2.0;
+      margin-bottom: 80px;
+      max-width: 680px;
+    }
+
+    /* Decoration */
+    .deco-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .deco-circle-gold {
+      background: radial-gradient(circle, rgba(176, 141, 87, 0.18) 0%, transparent 65%);
+    }
+    .deco-circle-dark {
+      background: radial-gradient(circle, rgba(176, 141, 87, 0.25) 0%, transparent 60%);
+    }
+    .deco-bg-num {
+      position: absolute;
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: clamp(180px, 24vw, 320px);
+      font-weight: 500;
+      line-height: 1;
+      color: var(--color-primary);
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      letter-spacing: -0.02em;
+    }
+    .container > * { position: relative; z-index: 1; }
+    .deco-dot-pattern {
+      background-image: radial-gradient(circle, rgba(176, 141, 87, 0.18) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .bg-alt { background: var(--color-bg-alt); }
+    .bg-dark { background: var(--color-bg-dark); color: var(--color-bg); }
+    .bg-dark .section-title { color: var(--color-bg); }
+    .bg-dark .section-sub { color: rgba(250, 246, 240, 0.7); }
+
+    /* ============================================
+       Header (固定)
+       ============================================ */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 246, 240, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(217, 207, 192, 0.5);
+    }
+    .site-logo { display: flex; align-items: center; gap: 14px; color: var(--color-primary); }
+    .site-logo .logo-mark { width: 36px; height: 36px; }
+    .site-logo .logo-text {
+      font-family: var(--serif-en);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+    }
+    .site-nav ul { display: flex; gap: 36px; }
+    .site-nav a {
+      font-family: var(--serif-en);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      transition: color 0.25s ease;
+      color: var(--color-primary);
+    }
+    .site-nav a:hover { color: var(--color-accent); }
+    .header-cta {
+      display: inline-block;
+      padding: 11px 26px;
+      background: var(--color-primary);
+      color: var(--color-bg);
+      font-family: var(--serif-en);
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .header-cta:hover { background: var(--color-accent); transform: translateY(-2px); }
+
+    /* ============================================
+       FV (Hero)
+       ============================================ */
+    .hero {
+      min-height: 100vh;
+      padding: 130px 0 80px;
+      display: flex;
+      align-items: center;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-deco-circle {
+      width: 520px;
+      height: 520px;
+      top: -120px;
+      right: 35%;
+      z-index: 0;
+    }
+    .hero-bg-num {
+      top: 80px;
+      right: -40px;
+      opacity: 0.05;
+    }
+
+    .hero-text { position: relative; }
+    .hero-en-label { animation: heroFadeIn 0.7s ease-out 0.1s both; }
+    .hero-vertical-wrap {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      animation: heroFadeIn 0.9s ease-out 0.3s both;
+    }
+    .hero-vertical {
+      writing-mode: vertical-rl;
+      -webkit-writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-family: var(--mincho);
+      font-size: clamp(40px, 5.2vw, 76px);
+      font-weight: 800;
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+      color: var(--color-primary);
+      max-height: 680px;
+    }
+    .hero-vertical .accent {
+      color: var(--color-accent);
+    }
+    .hero-sub {
+      font-family: var(--mincho);
+      font-size: 17px;
+      line-height: 2.0;
+      color: var(--color-text-light);
+      margin-bottom: 40px;
+      max-width: 460px;
+      letter-spacing: 0.05em;
+      animation: heroFadeIn 0.7s ease-out 0.6s both;
+    }
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+      animation: heroFadeIn 0.7s ease-out 0.8s both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-bg);
+      border: 1px solid var(--color-primary);
+    }
+    .btn-primary:hover {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(176, 141, 87, 0.35);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+    }
+    .btn-secondary:hover {
+      background: var(--color-primary);
+      color: var(--color-bg);
+      transform: translateY(-3px);
+    }
+    .btn-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .hero-stats {
+      display: flex;
+      gap: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-line);
+      animation: heroFadeIn 0.7s ease-out 1.0s both;
+    }
+    .hero-stat .num {
+      font-family: var(--serif-en);
+      font-size: 38px;
+      font-weight: 600;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .hero-stat .num small { font-size: 0.55em; margin-left: 2px; font-weight: 500; }
+    .hero-stat .label {
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+    }
+    .hero-stat .label-jp {
+      font-family: var(--sans-jp);
+      font-size: 11px;
+      color: var(--color-text-light);
+      letter-spacing: 0.05em;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .hero-visual {
+      position: relative;
+      animation: heroFadeIn 1.0s ease-out 0.2s both;
+    }
+    .hero-visual img {
+      width: 100%;
+      height: 620px;
+      object-fit: cover;
+    }
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      top: 24px; left: 24px;
+      right: -20px; bottom: -20px;
+      border: 1px solid var(--color-accent);
+      z-index: -1;
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      right: 80px;
+      font-family: var(--serif-en);
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--color-text-light);
+      writing-mode: vertical-rl;
+      animation: heroFadeIn 0.7s ease-out 1.2s both;
+    }
+    .hero-scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 56px;
+      background: var(--color-accent);
+      margin: 16px auto 0;
+      animation: scrollLine 2.5s ease-in-out infinite;
+      transform-origin: top;
+    }
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       TROUBLE
+       ============================================ */
+    .trouble { padding-bottom: 140px; }
+    .trouble-deco-bg-num { top: 60px; right: -20px; }
+    .trouble-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .trouble-card {
+      background: var(--color-bg);
+      padding: 48px 32px 40px;
+      border: 1px solid var(--color-line);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      position: relative;
+    }
+    .trouble-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(44, 29, 20, 0.10);
+      border-color: var(--color-accent);
+    }
+    .trouble-card-num {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--color-accent);
+      letter-spacing: 0.2em;
+    }
+    .trouble-icon {
+      width: 56px; height: 56px;
+      color: var(--color-accent);
+      margin-bottom: 28px;
+    }
+    .trouble-card h3 {
+      font-family: var(--mincho);
+      font-size: 22px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .trouble-card p {
+      font-size: 13.5px;
+      line-height: 1.9;
+      color: var(--color-text-light);
+    }
+
+    /* ============================================
+       CONCEPT
+       ============================================ */
+    .concept-deco-bg-num { top: 60px; left: -40px; }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 56px;
+      margin-top: 24px;
+    }
+    .concept-card {
+      text-align: left;
+      padding: 0;
+    }
+    .concept-num {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 64px;
+      font-weight: 500;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .concept-en {
+      font-family: var(--serif-en);
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      color: var(--color-accent);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    .concept-icon-wrap {
+      width: 88px; height: 88px;
+      margin-bottom: 32px;
+      border-radius: 50%;
+      background: var(--color-bg);
+      border: 1px solid var(--color-line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+      transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .concept-card:hover .concept-icon-wrap {
+      transform: translateY(-6px);
+      background: var(--color-accent);
+      color: var(--color-bg);
+      box-shadow: 0 14px 32px rgba(176, 141, 87, 0.28);
+    }
+    .concept-icon-wrap svg { width: 40px; height: 40px; }
+    .concept-card h3 {
+      font-family: var(--mincho);
+      font-size: 22px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+    }
+    .concept-card p {
+      font-size: 14px;
+      line-height: 2.0;
+      color: var(--color-text-light);
+    }
+
+    /* ============================================
+       MENU
+       ============================================ */
+    .menu-deco-bg-num { top: 80px; right: -20px; }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--color-line);
+      border-left: 1px solid var(--color-line);
+      background: var(--color-bg);
+    }
+    .menu-card {
+      padding: 56px 40px;
+      background: var(--color-bg);
+      border-right: 1px solid var(--color-line);
+      border-bottom: 1px solid var(--color-line);
+      transition: background 0.4s ease;
+      position: relative;
+    }
+    .menu-card:hover { background: var(--color-bg-alt); }
+    .menu-card:hover .menu-icon { transform: scale(1.08); }
+    .menu-icon {
+      width: 56px; height: 56px;
+      color: var(--color-accent);
+      margin-bottom: 28px;
+      transition: transform 0.4s ease;
+    }
+    .menu-en {
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .menu-card h3 {
+      font-family: var(--mincho);
+      font-size: 22px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .menu-card .effect {
+      font-size: 13px;
+      color: var(--color-text-light);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .menu-price {
+      font-family: var(--serif-en);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: -0.01em;
+    }
+    .menu-price small {
+      font-size: 13px;
+      color: var(--color-text-light);
+      font-family: var(--sans-jp);
+      font-weight: 400;
+      margin-left: 6px;
+    }
+    .menu-price.free {
+      color: var(--color-accent);
+      font-style: italic;
+    }
+
+    /* ============================================
+       RESULTS (Dark)
+       ============================================ */
+    .results { position: relative; }
+    .results-deco-circle {
+      width: 600px;
+      height: 600px;
+      top: -200px;
+      left: -200px;
+    }
+    .results-deco-circle-2 {
+      width: 480px;
+      height: 480px;
+      bottom: -200px;
+      right: -160px;
+    }
+    .results-deco-bg-num {
+      color: var(--color-accent);
+      opacity: 0.06;
+      top: 60px;
+      right: 40px;
+    }
+    .results .en-label { color: var(--color-accent-light); }
+    .results .en-label::before { background: var(--color-accent-light); }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .result-card {
+      text-align: center;
+      padding: 40px 16px;
+      border-left: 1px solid rgba(176, 141, 87, 0.25);
+    }
+    .result-card:first-child { border-left: none; }
+    .result-num {
+      font-family: var(--serif-en);
+      font-size: clamp(64px, 9vw, 120px);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--color-accent);
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+      font-feature-settings: "tnum";
+    }
+    .result-num small {
+      font-size: 0.4em;
+      letter-spacing: 0;
+      margin-left: 4px;
+      font-weight: 500;
+    }
+    .result-label {
+      font-family: var(--mincho);
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      color: rgba(250, 246, 240, 0.85);
+      margin-bottom: 6px;
+    }
+    .result-label-en {
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--color-accent-light);
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* ============================================
+       DOCTOR
+       ============================================ */
+    .doctor-deco-bg-num { top: 60px; left: -30px; }
+    .doctor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-top: 24px;
+    }
+    .doctor-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .doctor-photo { position: relative; }
+    .doctor-photo img {
+      width: 220px;
+      height: 300px;
+      object-fit: cover;
+      filter: grayscale(0.18) contrast(1.02);
+    }
+    .doctor-photo::after {
+      content: '';
+      position: absolute;
+      top: 12px; left: 12px;
+      right: -12px; bottom: -12px;
+      border: 1px solid var(--color-accent);
+      z-index: -1;
+    }
+    .doctor-info .role {
+      font-family: var(--serif-en);
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      color: var(--color-accent);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .doctor-info h3 {
+      font-family: var(--mincho);
+      font-size: 28px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .doctor-info .name-en {
+      font-family: var(--serif-en);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--color-text-light);
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+    .doctor-info .qual {
+      font-size: 12px;
+      color: var(--color-accent);
+      margin-bottom: 24px;
+      padding: 12px 0;
+      border-top: 1px solid var(--color-line);
+      border-bottom: 1px solid var(--color-line);
+      letter-spacing: 0.08em;
+    }
+    .doctor-info p {
+      font-size: 13.5px;
+      line-height: 2.0;
+      color: var(--color-text-light);
+    }
+
+    /* ============================================
+       VOICE
+       ============================================ */
+    .voice-deco-bg-num { top: 60px; right: -30px; }
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .voice-card {
+      background: var(--color-bg);
+      padding: 48px 32px 36px;
+      position: relative;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid var(--color-line);
+    }
+    .voice-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(44, 29, 20, 0.10);
+    }
+    .voice-quote {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 90px;
+      color: var(--color-accent);
+      opacity: 0.32;
+      line-height: 0.8;
+      position: absolute;
+      top: 30px; right: 30px;
+    }
+    .voice-text {
+      font-family: var(--mincho);
+      font-size: 15px;
+      line-height: 2.0;
+      color: var(--color-text);
+      margin-bottom: 32px;
+      min-height: 200px;
+      letter-spacing: 0.03em;
+    }
+    .voice-person {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-line);
+    }
+    .voice-person img {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .voice-name {
+      font-family: var(--mincho);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .voice-meta {
+      font-size: 11px;
+      color: var(--color-text-light);
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+
+    /* ============================================
+       FLOW
+       ============================================ */
+    .flow-deco-bg-num { top: 60px; left: -30px; }
+    .flow-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 24px;
+    }
+    .flow-item {
+      display: grid;
+      grid-template-columns: 120px 1fr 60px;
+      gap: 48px;
+      padding: 36px 0;
+      border-top: 1px solid var(--color-line);
+      align-items: center;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    .flow-item:last-child { border-bottom: 1px solid var(--color-line); }
+    .flow-item:hover {
+      background: var(--color-bg);
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .flow-num {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 72px;
+      font-weight: 500;
+      color: var(--color-accent);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .flow-content h3 {
+      font-family: var(--mincho);
+      font-size: 22px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .flow-content .step-en {
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .flow-content p {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--color-text-light);
+    }
+    .flow-arrow {
+      color: var(--color-accent);
+      width: 40px; height: 40px;
+      justify-self: end;
+    }
+
+    /* ============================================
+       PRICE
+       ============================================ */
+    .price-deco-bg-num { top: 60px; right: -30px; }
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 24px;
+    }
+    .price-card {
+      background: var(--color-bg);
+      padding: 56px 32px 40px;
+      border: 1px solid var(--color-line);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .price-card:hover { transform: translateY(-6px); }
+    .price-card.featured {
+      background: var(--color-primary);
+      color: var(--color-bg);
+      border-color: var(--color-primary);
+      transform: translateY(-12px);
+      box-shadow: 0 28px 56px rgba(44, 29, 20, 0.22);
+    }
+    .price-card.featured:hover { transform: translateY(-18px); }
+    .price-badge {
+      position: absolute;
+      top: -16px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-accent);
+      color: white;
+      padding: 7px 28px;
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .price-card .menu-en {
+      margin-bottom: 12px;
+    }
+    .price-card .name {
+      font-family: var(--mincho);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      letter-spacing: 0.04em;
+    }
+    .price-amount {
+      font-family: var(--serif-en);
+      font-size: 44px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--color-accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .price-card.featured .price-amount { color: var(--color-accent-light); }
+    .price-amount small {
+      font-size: 14px;
+      font-family: var(--sans-jp);
+      color: var(--color-text-light);
+      font-weight: 400;
+      margin-left: 6px;
+    }
+    .price-card.featured .price-amount small { color: rgba(250, 246, 240, 0.55); }
+    .price-amount-label {
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .price-card.featured .price-amount-label { color: rgba(250, 246, 240, 0.55); }
+    .price-features {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--color-line);
+    }
+    .price-card.featured .price-features { border-color: rgba(250, 246, 240, 0.18); }
+    .price-features li {
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 9px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .price-features svg {
+      flex-shrink: 0;
+      color: var(--color-accent);
+      width: 16px; height: 16px;
+    }
+    .price-card.featured .price-features svg { color: var(--color-accent-light); }
+    .price-features strong {
+      font-weight: 700;
+      font-family: var(--mincho);
+    }
+
+    /* ============================================
+       FAQ
+       ============================================ */
+    .faq-deco-bg-num { top: 60px; left: -30px; }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 920px;
+      margin-top: 24px;
+    }
+    .faq-item {
+      background: var(--color-bg);
+      border: 1px solid var(--color-line);
+      padding: 32px 40px;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .faq-item:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 12px 32px rgba(44, 29, 20, 0.06);
+    }
+    .faq-q {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      font-family: var(--mincho);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .faq-q-mark {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 26px;
+      color: var(--color-accent);
+      font-weight: 600;
+      line-height: 1.1;
+      flex-shrink: 0;
+    }
+    .faq-a {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--color-text-light);
+    }
+    .faq-a-mark {
+      font-family: var(--serif-en);
+      font-style: italic;
+      font-size: 26px;
+      color: var(--color-text-light);
+      font-weight: 600;
+      line-height: 1.1;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       Final CTA (Dark)
+       ============================================ */
+    .final-cta {
+      text-align: center;
+      padding: 140px 0 120px;
+    }
+    .final-cta-deco-circle {
+      width: 700px;
+      height: 700px;
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .final-cta .en-label {
+      justify-content: center;
+      color: var(--color-accent-light);
+    }
+    .final-cta .en-label::before { background: var(--color-accent-light); }
+    .final-cta .section-title {
+      font-family: var(--mincho);
+      font-size: clamp(36px, 5.4vw, 72px);
+      margin-bottom: 32px;
+      letter-spacing: 0.06em;
+    }
+    .final-cta .section-title .accent { color: var(--color-accent); }
+    .final-cta-sub {
+      font-family: var(--mincho);
+      font-size: 16px;
+      line-height: 2.0;
+      color: rgba(250, 246, 240, 0.85);
+      max-width: 580px;
+      margin: 0 auto 56px;
+      letter-spacing: 0.05em;
+    }
+    .final-cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 72px;
+    }
+    .final-cta .btn-primary {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-primary);
+      box-shadow: 0 0 60px rgba(176, 141, 87, 0.3);
+    }
+    .final-cta .btn-primary:hover {
+      background: var(--color-accent-light);
+      border-color: var(--color-accent-light);
+      box-shadow: 0 0 80px rgba(176, 141, 87, 0.5);
+    }
+    .final-cta .btn-secondary {
+      background: transparent;
+      color: var(--color-bg);
+      border-color: rgba(250, 246, 240, 0.4);
+    }
+    .final-cta .btn-secondary:hover {
+      background: rgba(250, 246, 240, 0.08);
+      color: var(--color-bg);
+      border-color: var(--color-bg);
+    }
+    .final-cta-stats {
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(176, 141, 87, 0.3);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .final-cta-stat .num {
+      font-family: var(--serif-en);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .final-cta-stat .num small { font-size: 0.5em; margin-left: 2px; }
+    .final-cta-stat .label {
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: rgba(250, 246, 240, 0.65);
+      text-transform: uppercase;
+    }
+
+    /* ============================================
+       Footer
+       ============================================ */
+    footer {
+      background: var(--color-primary);
+      color: var(--color-bg);
+      padding: 80px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(176, 141, 87, 0.18);
+    }
+    .footer-brand .logo-text {
+      font-family: var(--serif-en);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      margin-bottom: 16px;
+      color: var(--color-bg);
+    }
+    .footer-brand .tagline {
+      font-family: var(--mincho);
+      font-size: 14px;
+      color: var(--color-accent);
+      margin-bottom: 20px;
+      letter-spacing: 0.1em;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.95;
+      opacity: 0.7;
+      max-width: 320px;
+    }
+    .footer-col h4 {
+      font-family: var(--serif-en);
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      color: var(--color-accent);
+      margin-bottom: 24px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .footer-col li { font-size: 13px; line-height: 2.2; opacity: 0.85; }
+    .footer-col a { transition: color 0.25s ease; }
+    .footer-col a:hover { color: var(--color-accent); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 32px;
+      font-size: 11px;
+      opacity: 0.55;
+      font-family: var(--serif-en);
+      letter-spacing: 0.18em;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(250, 246, 240, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.25s ease, color 0.25s ease;
+    }
+    .footer-social a:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-disclaimer {
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.8;
+      color: rgba(250, 246, 240, 0.55);
+      padding: 28px 0 4px;
+      margin-top: 24px;
+      border-top: 1px solid rgba(217, 207, 192, 0.15);
+      letter-spacing: 0.04em;
+      font-family: var(--sans-jp);
+    }
+
+    /* ============================================
+       Responsive (768px breakpoint)
+       ============================================ */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      section { padding: 80px 0; }
+      .deco-bg-num { font-size: clamp(120px, 36vw, 200px) !important; }
+
+      /* Header */
+      .site-header { padding: 14px 16px; gap: 12px; }
+      .site-nav { display: none !important; }
+      .header-cta {
+        padding: 9px 14px;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        flex-shrink: 0;
+        margin-left: auto;
+      }
+      .site-logo { gap: 10px; flex-shrink: 1; min-width: 0; }
+      .site-logo .logo-text { font-size: 14px; letter-spacing: 0.12em; }
+      .site-logo .logo-mark { width: 28px; height: 28px; flex-shrink: 0; }
+
+      /* Hero */
+      .hero { padding: 100px 0 60px; min-height: auto; }
+      .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 48px !important;
+      }
+      .hero-vertical-wrap {
+        margin-bottom: 32px !important;
+      }
+      .hero-vertical {
+        writing-mode: horizontal-tb !important;
+        -webkit-writing-mode: horizontal-tb !important;
+        font-size: clamp(32px, 9.5vw, 48px) !important;
+        line-height: 1.5 !important;
+        max-height: none !important;
+      }
+      .hero-sub { font-size: 15px; }
+      .hero-cta-group { flex-direction: column; gap: 12px; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; padding-top: 24px; }
+      .hero-stat { flex: 1; min-width: 120px; }
+      .hero-stat .num { font-size: 28px; }
+      .hero-visual img { height: 380px; }
+      .hero-scroll-hint { display: none; }
+      .hero-deco-circle { width: 300px; height: 300px; top: 80px; right: -100px; }
+
+      /* Common */
+      .section-title { font-size: clamp(24px, 7vw, 36px) !important; }
+      .section-sub { margin-bottom: 48px; font-size: 14px; }
+
+      /* TROUBLE */
+      .trouble-grid { grid-template-columns: 1fr !important; gap: 16px; }
+      .trouble-card { padding: 32px 24px; }
+
+      /* CONCEPT */
+      .concept-grid { grid-template-columns: 1fr !important; gap: 56px; }
+      .concept-num { font-size: 48px; }
+
+      /* MENU */
+      .menu-grid { grid-template-columns: 1fr !important; }
+      .menu-card { padding: 36px 24px; }
+
+      /* RESULTS */
+      .results-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px 12px; }
+      .result-card { border-left: none !important; padding: 24px 4px; }
+      .result-card:nth-child(2n+1) { border-right: 1px solid rgba(176, 141, 87, 0.25); }
+      .result-card:nth-child(-n+2) { border-bottom: 1px solid rgba(176, 141, 87, 0.25); padding-bottom: 32px; }
+      .result-num { font-size: clamp(48px, 14vw, 72px) !important; margin-bottom: 12px !important; }
+      .result-label { font-size: 13px; }
+
+      /* DOCTOR */
+      .doctor-grid { grid-template-columns: 1fr !important; gap: 56px; }
+      .doctor-card { grid-template-columns: 1fr; }
+      .doctor-photo img { width: 100%; max-width: 280px; height: 360px; }
+
+      /* VOICE */
+      .voice-grid { grid-template-columns: 1fr !important; gap: 16px; }
+      .voice-text { min-height: auto; }
+      .voice-quote { font-size: 64px; top: 20px; right: 20px; }
+
+      /* FLOW */
+      .flow-item {
+        grid-template-columns: 64px 1fr !important;
+        gap: 20px;
+        padding: 24px 0;
+      }
+      .flow-item:hover { padding-left: 12px; padding-right: 12px; }
+      .flow-num { font-size: 44px; }
+      .flow-arrow { display: none; }
+      .flow-content h3 { font-size: 18px; }
+
+      /* PRICE */
+      .price-grid { grid-template-columns: 1fr !important; gap: 16px; }
+      .price-card.featured { transform: translateY(0) !important; }
+      .price-card.featured:hover { transform: translateY(-6px) !important; }
+      .price-amount { font-size: 36px; }
+
+      /* FAQ */
+      .faq-item { padding: 24px; }
+      .faq-q { font-size: 16px; gap: 16px; }
+      .faq-q-mark, .faq-a-mark { font-size: 22px; }
+
+      /* Final CTA */
+      .final-cta { padding: 80px 0; }
+      .final-cta-buttons { flex-direction: column; gap: 12px; }
+      .final-cta-stats { gap: 24px; flex-wrap: wrap; }
+      .final-cta-stat .num { font-size: 24px; }
+
+      /* Buttons */
+      .btn { width: 100%; min-height: 48px; justify-content: center; padding: 16px 24px; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
+
+      img { max-width: 100%; height: auto; }
+    }
+
+    /* prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       Header
+       ============================================ -->
+  <header class="site-header">
+    <a href="#" class="site-logo" aria-label="ÉCLAT CLINIC">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="0.7"/>
+        <text x="20" y="27.5" text-anchor="middle" fill="currentColor" font-family="'Cormorant Garamond', serif" font-weight="600" font-size="22" font-style="italic">É</text>
+      </svg>
+      <span class="logo-text">ÉCLAT CLINIC</span>
+    </a>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#concept">CONCEPT</a></li>
+        <li><a href="#menu">MENU</a></li>
+        <li><a href="#doctor">DOCTOR</a></li>
+        <li><a href="#voice">VOICE</a></li>
+        <li><a href="#price">PRICE</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a href="#booking" class="header-cta">RESERVE</a>
+  </header>
+
+  <!-- ============================================
+       FV (Hero)
+       ============================================ -->
+  <section class="hero">
+    <span class="deco-circle deco-circle-gold hero-deco-circle"></span>
+    <span class="deco-bg-num hero-bg-num">É</span>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="en-label hero-en-label">ÉCLAT CLINIC <span class="num">— Est. 2018</span></div>
+          <div class="hero-vertical-wrap">
+            <p class="hero-vertical">輝きは、<br><span class="accent">肌の奥</span>から。</p>
+          </div>
+          <p class="hero-sub">ドクター監修 × AI肌分析 × 完全オーダーメイド。<br>あなたの肌に合った"正解"を、表参道で。</p>
+          <div class="hero-cta-group">
+            <a href="#booking" class="btn btn-primary">
+              無料カウンセリングを予約する
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+            <a href="#" class="btn btn-secondary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.508.43-.595.06-.024.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+              </svg>
+              LINEで肌診断を受ける
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="num">12,000<small>+</small></div>
+              <div class="label">Cases</div>
+              <span class="label-jp">累計症例数</span>
+            </div>
+            <div class="hero-stat">
+              <div class="num">98.7<small>%</small></div>
+              <div class="label">Satisfaction</div>
+              <span class="label-jp">顧客満足度</span>
+            </div>
+            <div class="hero-stat">
+              <div class="num">3</div>
+              <div class="label">Specialists</div>
+              <span class="label-jp">皮膚科専門医</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1773924093206-9a433a14bb44?w=1200&auto=format&fit=crop&q=80"
+               alt="ÉCLAT CLINIC のラウンジ空間" loading="eager" width="800" height="620">
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">SCROLL</div>
+  </section>
+
+  <!-- ============================================
+       TROUBLE / 01
+       ============================================ -->
+  <section class="trouble bg-alt">
+    <span class="deco-bg-num trouble-deco-bg-num">01</span>
+    <div class="container">
+      <div class="en-label">Trouble <span class="num">/ 01</span></div>
+      <h2 class="section-title">その肌悩み、原因は<br>一つではないかもしれません</h2>
+      <p class="section-sub">同じ"シミ"でも、原因はひとつではありません。<br>一人ひとり違う肌の状態を、ドクターが正しく見極めます。</p>
+      <div class="trouble-grid">
+        <article class="trouble-card">
+          <span class="trouble-card-num">01</span>
+          <svg class="trouble-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="24" cy="24" r="9"/>
+            <line x1="24" y1="6" x2="24" y2="11"/>
+            <line x1="24" y1="37" x2="24" y2="42"/>
+            <line x1="6" y1="24" x2="11" y2="24"/>
+            <line x1="37" y1="24" x2="42" y2="24"/>
+            <line x1="11.5" y1="11.5" x2="14.5" y2="14.5"/>
+            <line x1="33.5" y1="33.5" x2="36.5" y2="36.5"/>
+            <line x1="11.5" y1="36.5" x2="14.5" y2="33.5"/>
+            <line x1="33.5" y1="14.5" x2="36.5" y2="11.5"/>
+          </svg>
+          <h3>シミ・<br>くすみ</h3>
+          <p>紫外線、加齢、ホルモン。原因によって最適な治療は変わります。レーザーだけが正解ではありません。</p>
+        </article>
+        <article class="trouble-card">
+          <span class="trouble-card-num">02</span>
+          <svg class="trouble-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="14" cy="14" r="2.5"/>
+            <circle cx="28" cy="11" r="2"/>
+            <circle cx="38" cy="20" r="2.5"/>
+            <circle cx="20" cy="26" r="2"/>
+            <circle cx="32" cy="32" r="2.5"/>
+            <circle cx="11" cy="34" r="2"/>
+            <circle cx="24" cy="40" r="2"/>
+            <circle cx="40" cy="36" r="2"/>
+          </svg>
+          <h3>毛穴・<br>肌質</h3>
+          <p>開き、黒ずみ、たるみ毛穴。タイプ別のアプローチが必要。同じ"毛穴"でも改善の道筋が違います。</p>
+        </article>
+        <article class="trouble-card">
+          <span class="trouble-card-num">03</span>
+          <svg class="trouble-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 18 Q16 12 24 18 T40 18"/>
+            <path d="M8 26 Q16 20 24 26 T40 26"/>
+            <path d="M8 34 Q16 28 24 34 T40 34"/>
+            <line x1="34" y1="38" x2="38" y2="42"/>
+            <line x1="38" y1="38" x2="34" y2="42"/>
+          </svg>
+          <h3>たるみ・<br>しわ</h3>
+          <p>表情筋、皮膚弾力、骨格変化。多層的な原因を見極めて、効果が長く続く治療を選びます。</p>
+        </article>
+        <article class="trouble-card">
+          <span class="trouble-card-num">04</span>
+          <svg class="trouble-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M24 6 L40 24 L24 42 L8 24 Z"/>
+            <path d="M16 24 L24 16 L32 24" opacity="0.5"/>
+          </svg>
+          <h3>ハリ・<br>透明感</h3>
+          <p>表面ケアだけでは届かない、肌奥のコンディション。内側から整えるアプローチで根本から変えます。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONCEPT / 02
+       ============================================ -->
+  <section class="concept" id="concept">
+    <span class="deco-bg-num concept-deco-bg-num">02</span>
+    <span class="deco-circle deco-circle-gold" style="width: 380px; height: 380px; top: 200px; right: -120px;"></span>
+    <div class="container">
+      <div class="en-label">Concept <span class="num">/ 02</span></div>
+      <h2 class="section-title">美しさは、<span class="accent">データ</span>と<span class="accent">感性</span>で。</h2>
+      <p class="section-sub">あなたの肌に合った"正解"を、3つのアプローチで導きます。<br>感覚ではなく、確かな根拠を持って治療を提案する。それがÉCLATの流儀です。</p>
+      <div class="concept-grid">
+        <article class="concept-card">
+          <div class="concept-num">01</div>
+          <div class="concept-en">AI Skin Analysis</div>
+          <div class="concept-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="8" y="8" width="32" height="32" rx="2"/>
+              <line x1="14" y1="34" x2="14" y2="22"/>
+              <line x1="20" y1="34" x2="20" y2="18"/>
+              <line x1="26" y1="34" x2="26" y2="14"/>
+              <line x1="32" y1="34" x2="32" y2="24"/>
+              <circle cx="14" cy="18" r="1.5" fill="currentColor"/>
+              <circle cx="20" cy="14" r="1.5" fill="currentColor"/>
+              <circle cx="26" cy="10" r="1.5" fill="currentColor"/>
+              <circle cx="32" cy="20" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>AI肌分析で<br>15項目をスコア化</h3>
+          <p>最新の肌診断機器 VISIA を導入。シミ・毛穴・しわ・キメなど15項目を可視化し、肉眼では見えない肌内部の状態まで把握します。</p>
+        </article>
+        <article class="concept-card">
+          <div class="concept-num">02</div>
+          <div class="concept-en">Doctor Supervision</div>
+          <div class="concept-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8 L16 22 Q16 28 24 28 Q32 28 32 22 L32 8"/>
+              <circle cx="16" cy="8" r="2"/>
+              <circle cx="32" cy="8" r="2"/>
+              <path d="M24 28 L24 36"/>
+              <circle cx="24" cy="40" r="3"/>
+            </svg>
+          </div>
+          <h3>皮膚科専門医による<br>完全オーダーメイド</h3>
+          <p>AI分析データを元に、皮膚科専門医があなただけの治療プランを設計。汎用的なメニューではなく、肌に最適な組み合わせを提案します。</p>
+        </article>
+        <article class="concept-card">
+          <div class="concept-num">03</div>
+          <div class="concept-en">Premium Equipment</div>
+          <div class="concept-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="24" cy="24" r="4"/>
+              <ellipse cx="24" cy="24" rx="18" ry="7"/>
+              <ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(60 24 24)"/>
+              <ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(120 24 24)"/>
+            </svg>
+          </div>
+          <h3>国内最新鋭の<br>マシン8機種を完備</h3>
+          <p>ピコレーザー / 医療HIFU / 医療ハイドラ等、肌悩みに対応する最新機器を完備。施術の選択肢が広いから、本当に効く治療が選べます。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MENU / 03
+       ============================================ -->
+  <section class="menu bg-alt" id="menu">
+    <span class="deco-bg-num menu-deco-bg-num">03</span>
+    <div class="container">
+      <div class="en-label">Menu <span class="num">/ 03</span></div>
+      <h2 class="section-title">6つの専門メニュー</h2>
+      <p class="section-sub">お悩みに合わせて、最適な施術をご提案します。<br>各メニューは皮膚科専門医の監修のもと、効果と安全性を厳選しています。</p>
+      <div class="menu-grid">
+        <article class="menu-card">
+          <svg class="menu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 6 L12 26 L22 26 L18 42 L36 20 L26 20 L30 6 Z"/>
+          </svg>
+          <div class="menu-en">Pico Laser</div>
+          <h3>ピコレーザー</h3>
+          <p class="effect">シミ・くすみ・毛穴を、肌へのダメージを最小限に改善</p>
+          <div class="menu-price">¥38,000<small>〜 / 1回</small></div>
+        </article>
+        <article class="menu-card">
+          <svg class="menu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 24 Q10 14 16 24 T28 24 T40 24 L44 24"/>
+            <path d="M4 32 Q10 22 16 32 T28 32 T40 32 L44 32" opacity="0.5"/>
+          </svg>
+          <div class="menu-en">Medical HIFU</div>
+          <h3>医療HIFU</h3>
+          <p class="effect">肌の深層に超音波を届けて、リフトアップとたるみを改善</p>
+          <div class="menu-price">¥88,000<small>〜 / 1回</small></div>
+        </article>
+        <article class="menu-card">
+          <svg class="menu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M24 6 C18 14, 12 20, 12 28 C12 35, 17 40, 24 40 C31 40, 36 35, 36 28 C36 20, 30 14, 24 6 Z"/>
+          </svg>
+          <div class="menu-en">Hydrafacial</div>
+          <h3>医療ハイドラフェイシャル</h3>
+          <p class="effect">毛穴の汚れを吸引洗浄しながら、美容液で肌質を改善</p>
+          <div class="menu-price">¥22,000<small>〜 / 1回</small></div>
+        </article>
+        <article class="menu-card">
+          <svg class="menu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="32" y1="8" x2="42" y2="18"/>
+            <path d="M28 12 L36 20 L18 38 L12 38 L10 36 L10 30 Z"/>
+            <line x1="14" y1="34" x2="20" y2="28"/>
+          </svg>
+          <div class="menu-en">Botox</div>
+          <h3>ボトックス注射</h3>
+          <p class="effect">表情じわ、エラ張り、小顔。狙った筋肉だけにアプローチ</p>
+          <div class="menu-price">¥28,000<small>〜 / 1部位</small></div>
+        </article>
+        <article class="menu-card">
+          <svg class="menu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 4 L30 4 L30 12 L36 22 C40 30, 36 42, 24 42 C12 42, 8 30, 12 22 L18 12 Z"/>
+            <line x1="18" y1="22" x2="30" y2="22" opacity="0.5"/>
+            <circle cx="20" cy="32" r="1.5" fill="currentColor"/>
+            <circle cx="26" cy="36" r="1.5" fill="currentColor"/>
+          </svg>
+          <div class="menu-en">Hyaluronic Acid</div>
+          <h3>ヒアルロン酸注射</h3>
+          <p class="effect">凹凸を埋めて、ハリ・ボリューム・輪郭を整える</p>
+          <div class="menu-price">¥55,000<small>〜 / 1cc</small></div>
+        </article>
+        <article class="menu-card">
+          <svg class="menu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="24" cy="22" r="14"/>
+            <path d="M16 22 Q20 28 24 28 Q28 28 32 22"/>
+            <circle cx="19" cy="20" r="1" fill="currentColor"/>
+            <circle cx="29" cy="20" r="1" fill="currentColor"/>
+            <line x1="6" y1="22" x2="10" y2="22"/>
+            <line x1="38" y1="22" x2="42" y2="22"/>
+            <line x1="6" y1="14" x2="9" y2="16"/>
+            <line x1="42" y1="14" x2="39" y2="16"/>
+          </svg>
+          <div class="menu-en">VISIA Skin Analysis</div>
+          <h3>AI肌分析 VISIA</h3>
+          <p class="effect">15項目を可視化する最新の肌診断機器（カウンセリング時）</p>
+          <div class="menu-price free">¥0<small> 無料</small></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       RESULTS / 04 (Dark)
+       ============================================ -->
+  <section class="results bg-dark">
+    <span class="deco-circle deco-circle-dark results-deco-circle"></span>
+    <span class="deco-circle deco-circle-dark results-deco-circle-2"></span>
+    <span class="deco-bg-num results-deco-bg-num">04</span>
+    <div class="container">
+      <div class="en-label">Results <span class="num">/ 04</span></div>
+      <h2 class="section-title">数字が語る、<br><span class="accent" style="color:var(--color-accent-light);">ÉCLAT</span>の実績</h2>
+      <p class="section-sub">多くの方の"変わりたい"に、私たちは応えてきました。<br>2018年の開院以来、信頼は数字となって積み重なっています。</p>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-num">12,000<small>+</small></div>
+          <div class="result-label">累計症例数</div>
+          <div class="result-label-en">Cases</div>
+        </div>
+        <div class="result-card">
+          <div class="result-num">98.7<small>%</small></div>
+          <div class="result-label">顧客満足度</div>
+          <div class="result-label-en">Satisfaction</div>
+        </div>
+        <div class="result-card">
+          <div class="result-num">94<small>%</small></div>
+          <div class="result-label">リピート率</div>
+          <div class="result-label-en">Repeat Rate</div>
+        </div>
+        <div class="result-card">
+          <div class="result-num">8<small>yrs</small></div>
+          <div class="result-label">開院からの歴史</div>
+          <div class="result-label-en">Since 2018</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DOCTOR / 05
+       ============================================ -->
+  <section class="doctor" id="doctor">
+    <span class="deco-bg-num doctor-deco-bg-num">05</span>
+    <div class="container">
+      <div class="en-label">Doctor <span class="num">/ 05</span></div>
+      <h2 class="section-title">ドクター監修、<br>すべての施術に</h2>
+      <p class="section-sub">皮膚科専門医3名が在籍。すべての施術にドクターが立ち会います。<br>カウンセリングから施術、アフターフォローまで、医師が責任を持って担当します。</p>
+      <div class="doctor-grid">
+        <article class="doctor-card">
+          <div class="doctor-photo">
+            <img src="https://images.unsplash.com/photo-1624091844772-554661d10173?w=440&h=600&auto=format&fit=crop&q=80" alt="院長 美和 玲子" loading="lazy" width="220" height="300">
+          </div>
+          <div class="doctor-info">
+            <div class="role">Director</div>
+            <h3>美和 玲子</h3>
+            <div class="name-en">Reiko Miwa, M.D.</div>
+            <div class="qual">皮膚科専門医 / 日本美容皮膚科学会 認定医</div>
+            <p>慶應義塾大学医学部卒業。大学病院皮膚科で10年勤務後、美容皮膚科に特化。"肌の本質に向き合う医療"を理念に2018年ÉCLAT CLINICを開院。</p>
+          </div>
+        </article>
+        <article class="doctor-card">
+          <div class="doctor-photo">
+            <img src="https://images.unsplash.com/photo-1612944095914-33fd0a85fcfc?w=440&h=600&auto=format&fit=crop&q=80" alt="副院長 高瀬 美咲" loading="lazy" width="220" height="300">
+          </div>
+          <div class="doctor-info">
+            <div class="role">Vice Director</div>
+            <h3>高瀬 美咲</h3>
+            <div class="name-en">Misaki Takase, M.D.</div>
+            <div class="qual">皮膚科専門医 / レーザー専門医</div>
+            <p>東京大学医学部卒業。レーザー治療の症例数 5,000件超。患者一人ひとりに寄り添う丁寧なカウンセリングが評判。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       VOICE / 06
+       ============================================ -->
+  <section class="voice bg-alt" id="voice">
+    <span class="deco-bg-num voice-deco-bg-num">06</span>
+    <div class="container">
+      <div class="en-label">Voice <span class="num">/ 06</span></div>
+      <h2 class="section-title">お客様の声</h2>
+      <p class="section-sub">実際に通われた方の体験談をご紹介します。<br>変わったのは肌だけではない。"自信"と"日々の心地よさ"についても、お聞きしました。</p>
+      <div class="voice-grid">
+        <article class="voice-card">
+          <div class="voice-quote">"</div>
+          <p class="voice-text">10年以上気になっていた頬のシミが、3回のピコレーザーでほとんど目立たなくなりました。AI肌分析で「なぜシミができたか」まで説明してもらえて、納得して施術を受けられたのが大きいです。</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1624706477323-a31e11c3ea1f?w=120&h=120&auto=format&fit=crop&q=80" alt="A.M さんのお写真" loading="lazy" width="56" height="56">
+            <div>
+              <div class="voice-name">A.M さん</div>
+              <div class="voice-meta">34歳 / 経営者</div>
+            </div>
+          </div>
+        </article>
+        <article class="voice-card">
+          <div class="voice-quote">"</div>
+          <p class="voice-text">毛穴の開きで悩んでいましたが、ハイドラとピコの組み合わせを提案してもらい、肌の質感が変わりました。「とりあえずこれ」ではなく、私の肌に合わせて選んでくれるのが信頼できます。</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1581065178047-8ee15951ede6?w=120&h=120&auto=format&fit=crop&q=80" alt="R.T さんのお写真" loading="lazy" width="56" height="56">
+            <div>
+              <div class="voice-name">R.T さん</div>
+              <div class="voice-meta">38歳 / IT企業勤務</div>
+            </div>
+          </div>
+        </article>
+        <article class="voice-card">
+          <div class="voice-quote">"</div>
+          <p class="voice-text">仕事柄、肌のコンディションは死活問題。HIFUとボトックスの組み合わせで、自然なリフトアップができました。ダウンタイムの相談も親身に乗ってもらえて安心です。</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1624706477318-2b624c31e2e4?w=120&h=120&auto=format&fit=crop&q=80" alt="K.S さんのお写真" loading="lazy" width="56" height="56">
+            <div>
+              <div class="voice-name">K.S さん</div>
+              <div class="voice-meta">42歳 / モデル</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FLOW / 07
+       ============================================ -->
+  <section class="flow">
+    <span class="deco-bg-num flow-deco-bg-num">07</span>
+    <div class="container">
+      <div class="en-label">Flow <span class="num">/ 07</span></div>
+      <h2 class="section-title">初めての方へ、<br>5つのステップ</h2>
+      <p class="section-sub">安心してご来院いただけるよう、丁寧にサポートします。<br>初回はAI肌分析（VISIA）+ ドクターカウンセリングが無料です。</p>
+      <ol class="flow-list">
+        <li class="flow-item">
+          <div class="flow-num">01</div>
+          <div class="flow-content">
+            <div class="step-en">Booking</div>
+            <h3>WEB予約</h3>
+            <p>24時間オンラインで予約可能。希望の日時を選ぶだけ。お電話でのご予約も承っております。</p>
+          </div>
+          <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num">02</div>
+          <div class="flow-content">
+            <div class="step-en">Welcome</div>
+            <h3>来院・問診</h3>
+            <p>プライバシー重視の完全個室にご案内。カウンセラーが肌悩みを丁寧にお伺いします。</p>
+          </div>
+          <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num">03</div>
+          <div class="flow-content">
+            <div class="step-en">Skin Analysis</div>
+            <h3>AI肌分析</h3>
+            <p>VISIAで肌の状態を15項目スコア化（無料）。シミ・毛穴・しわ・赤みなどを可視化します。</p>
+          </div>
+          <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num">04</div>
+          <div class="flow-content">
+            <div class="step-en">Counseling</div>
+            <h3>ドクターカウンセリング</h3>
+            <p>分析結果をもとに、皮膚科専門医があなただけの治療プランをご提案。費用と効果を明示します。</p>
+          </div>
+          <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num">05</div>
+          <div class="flow-content">
+            <div class="step-en">Treatment & Care</div>
+            <h3>施術 + アフターフォロー</h3>
+            <p>同日施術も可能。施術後のホームケア、再診のスケジュールまで、医師がしっかりサポートします。</p>
+          </div>
+          <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRICE / 08
+       ============================================ -->
+  <section class="price bg-alt" id="price">
+    <span class="deco-bg-num price-deco-bg-num">08</span>
+    <div class="container">
+      <div class="en-label">Price <span class="num">/ 08</span></div>
+      <h2 class="section-title">主要施術の料金</h2>
+      <p class="section-sub">表示価格はすべて税込。詳細はカウンセリング時にご案内します。<br>分割払い・医療ローン対応で、無理なく続けられる体制を整えています。</p>
+      <div class="price-grid">
+        <article class="price-card">
+          <div class="menu-en">Pico Laser</div>
+          <div class="name">ピコレーザー</div>
+          <div class="price-amount">¥38,000<small>から</small></div>
+          <div class="price-amount-label">/ 1回</div>
+          <ul class="price-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <strong>5回コース</strong> ¥170,000
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              推奨頻度: 月1回
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              施術時間: 30分
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              専用ホームケアパック付き
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              シミ・くすみ・毛穴に対応
+            </li>
+          </ul>
+        </article>
+        <article class="price-card featured">
+          <div class="price-badge">Recommended</div>
+          <div class="menu-en" style="color: var(--color-accent-light);">Medical HIFU</div>
+          <div class="name">医療HIFU</div>
+          <div class="price-amount">¥88,000<small>から</small></div>
+          <div class="price-amount-label">/ 1回</div>
+          <ul class="price-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <strong>5回コース</strong> ¥400,000
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              推奨頻度: 半年〜1年に1回
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              施術時間: 60分
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              鎮静ケア・冷却ケア付き
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              リフトアップ・たるみに対応
+            </li>
+          </ul>
+        </article>
+        <article class="price-card">
+          <div class="menu-en">Hydrafacial</div>
+          <div class="name">医療ハイドラ</div>
+          <div class="price-amount">¥22,000<small>から</small></div>
+          <div class="price-amount-label">/ 1回</div>
+          <ul class="price-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <strong>5回コース</strong> ¥99,000
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              推奨頻度: 月1〜2回
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              施術時間: 45分
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              専用美容液パック付き
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              毛穴・肌質改善に対応
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FAQ / 09
+       ============================================ -->
+  <section class="faq" id="faq">
+    <span class="deco-bg-num faq-deco-bg-num">09</span>
+    <div class="container">
+      <div class="en-label">FAQ <span class="num">/ 09</span></div>
+      <h2 class="section-title">よくあるご質問</h2>
+      <p class="section-sub">初めての方からよくいただく質問をまとめました。<br>その他のご質問は、無料カウンセリングでお気軽にご相談ください。</p>
+      <div class="faq-list">
+        <article class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-mark">Q.</span>
+            <span>痛みはありますか？</span>
+          </div>
+          <div class="faq-a">
+            <span class="faq-a-mark">A.</span>
+            <span>施術によって異なります。ピコレーザーは輪ゴムで弾く程度、HIFUは熱感を伴います。痛みに敏感な方には麻酔クリーム（無料）をご用意しております。施術前のカウンセリングで詳しくお伝えします。</span>
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-mark">Q.</span>
+            <span>ダウンタイムはどのくらいですか？</span>
+          </div>
+          <div class="faq-a">
+            <span class="faq-a-mark">A.</span>
+            <span>ハイドラフェイシャルはダウンタイムなし、ピコレーザーは赤み2〜3日、HIFUは数日の腫れ感が出る場合があります。お仕事や予定に合わせて、ダウンタイムが少ない治療を選ぶことも可能です。</span>
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-mark">Q.</span>
+            <span>何回くらい通えば効果が出ますか？</span>
+          </div>
+          <div class="faq-a">
+            <span class="faq-a-mark">A.</span>
+            <span>施術と肌状態によりますが、ピコレーザーは3〜5回、HIFUは1回でも効果を実感いただけます。AI肌分析で最適な回数をご提案します。一度に決めず、段階的に試していくことも可能です。</span>
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-mark">Q.</span>
+            <span>妊娠中・授乳中でも受けられますか？</span>
+          </div>
+          <div class="faq-a">
+            <span class="faq-a-mark">A.</span>
+            <span>レーザー・HIFU・注射系は妊娠中・授乳中はお控えいただいております。ハイドラフェイシャルなど、対応可能な施術もございますので、ドクターカウンセリングでご相談ください。</span>
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-mark">Q.</span>
+            <span>支払い方法は？</span>
+          </div>
+          <div class="faq-a">
+            <span class="faq-a-mark">A.</span>
+            <span>現金 / 各種クレジットカード（VISA, Master, AMEX, JCB, Diners） / 医療ローンに対応。コース料金は分割払いもご利用いただけます。継続的に通われる方には、コース割引もご用意しております。</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Final CTA (Dark)
+       ============================================ -->
+  <section class="final-cta bg-dark" id="booking">
+    <span class="deco-circle deco-circle-dark final-cta-deco-circle"></span>
+    <div class="container">
+      <div class="en-label">Booking <span class="num">/ 10</span></div>
+      <h2 class="section-title">あなたの肌の<br><span class="accent">輝き</span>を、取り戻しに。</h2>
+      <p class="final-cta-sub">無料カウンセリング + AI肌分析（¥0）で、<br>まずはお気軽にご相談ください。</p>
+      <div class="final-cta-buttons">
+        <a href="#" class="btn btn-primary">
+          無料カウンセリングを予約する
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <a href="#" class="btn btn-secondary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.508.43-.595.06-.024.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          LINEで肌診断を受ける（無料）
+        </a>
+      </div>
+      <div class="final-cta-stats">
+        <div class="final-cta-stat">
+          <div class="num">12,000<small>+</small></div>
+          <div class="label">Cases</div>
+        </div>
+        <div class="final-cta-stat">
+          <div class="num">98.7<small>%</small></div>
+          <div class="label">Satisfaction</div>
+        </div>
+        <div class="final-cta-stat">
+          <div class="num">3</div>
+          <div class="label">Specialists</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Footer
+       ============================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-text">ÉCLAT CLINIC</div>
+          <div class="tagline">輝きは、肌の奥から。</div>
+          <p>東京都港区南青山3-XX-XX<br>ÉCLAT Building 4F<br>Tel. 03-XXXX-XXXX<br>営業時間 11:00 – 20:00（不定休）</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="LINE">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.508.43-.595.06-.024.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="#menu">ピコレーザー</a></li>
+            <li><a href="#menu">医療HIFU</a></li>
+            <li><a href="#menu">医療ハイドラ</a></li>
+            <li><a href="#menu">ボトックス</a></li>
+            <li><a href="#menu">ヒアルロン酸</a></li>
+            <li><a href="#menu">AI肌分析</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#concept">コンセプト</a></li>
+            <li><a href="#doctor">ドクター紹介</a></li>
+            <li><a href="#voice">お客様の声</a></li>
+            <li><a href="#flow">来院フロー</a></li>
+            <li><a href="#faq">よくある質問</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#booking">無料カウンセリング</a></li>
+            <li><a href="#">LINE肌診断</a></li>
+            <li><a href="#">アクセス</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">特定商取引法</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        ※本サイトはポートフォリオ用の架空サンプルです。実在のクリニック・施術内容とは一切関係ありません。
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ÉCLAT CLINIC (Sample). All Rights Reserved.</span>
+        <span>PORTFOLIO SAMPLE</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
