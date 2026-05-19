@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact｜ÉCLAT CLINIC</title>
+  <meta name="description" content="ÉCLAT CLINICへのお問い合わせ・無料カウンセリングのご予約はこちら。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Shippori+Mincho+B1:wght@400;500;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- ============================================
+       Header
+       ============================================ -->
+  <header class="site-header">
+    <a href="./index.html" class="site-logo" aria-label="ÉCLAT CLINIC — ホームへ">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="0.7"/>
+        <text x="20" y="27.5" text-anchor="middle" fill="currentColor" font-family="'Cormorant Garamond', serif" font-weight="600" font-size="22" font-style="italic">É</text>
+      </svg>
+      <span class="logo-text">ÉCLAT CLINIC</span>
+    </a>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./menu.html">Menu</a></li>
+        <li><a href="./voice.html">Voice</a></li>
+        <li><a href="./price.html">Price</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="./contact.html" class="header-cta">無料カウンセリング</a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="モバイルナビゲーション">
+    <nav>
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./menu.html">Menu</a></li>
+        <li><a href="./voice.html">Voice</a></li>
+        <li><a href="./price.html">Price</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+      <a href="./contact.html" class="mobile-cta">無料カウンセリング予約</a>
+    </nav>
+  </div>
+
+  <!-- ============================================
+       Page Hero
+       ============================================ -->
+  <section class="page-hero bg-alt">
+    <span class="deco-bg-num" style="font-size:clamp(160px,22vw,280px);color:var(--color-bg-alt);filter:brightness(.96);top:50px;left:50%;transform:translateX(-50%);z-index:0;white-space:nowrap;">CONTACT</span>
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="page-hero-en">Contact</span>
+        <span class="page-hero-jp">お問い合わせ</span>
+        <nav class="breadcrumb" aria-label="パンくずリスト">
+          <a href="./index.html">Home</a>
+          <span class="breadcrumb-sep" aria-hidden="true">—</span>
+          <span aria-current="page">Contact</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Contact Form
+       ============================================ -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Form -->
+        <div class="contact-form-wrap">
+          <div class="contact-form-head">
+            <div class="en-label">Inquiry Form</div>
+            <h2>無料カウンセリング予約<br>・お問い合わせ</h2>
+            <p>初回カウンセリングはAI肌分析（VISIA）込みで完全無料です。<br>ご希望の日時・お悩みをお気軽にご記入ください。2営業日以内にご返信いたします。</p>
+          </div>
+
+          <!-- Success Message -->
+          <div class="form-message success" id="form-success" role="alert">
+            <strong>送信が完了しました。</strong><br>
+            ご連絡いただきありがとうございます。2営業日以内にご返信いたします。<br>
+            しばらくお待ちくださいませ。
+          </div>
+
+          <!-- Error Message -->
+          <div class="form-message error" id="form-error" role="alert">
+            送信に失敗しました。お手数ですが、再度お試しください。<br>
+            問題が続く場合はお電話（03-XXXX-XXXX）にてご連絡ください。
+          </div>
+
+          <!--
+            Formspree設定手順:
+            1. https://formspree.io でアカウント作成
+            2. 「New Form」を作成し、受信メールアドレスを設定
+            3. 発行されたフォームIDで下記 action URL を更新:
+               例: action="https://formspree.io/f/abcd1234"
+          -->
+          <form id="contact-form" action="https://formspree.io/f/mwvzpqjl" method="POST" novalidate>
+
+            <!-- Honeypot (スパム対策) -->
+            <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off">
+            <!-- Formspree: サンクスページへのリダイレクトを無効化 -->
+            <input type="hidden" name="_next" value="">
+
+            <div class="form-group">
+              <label class="form-label" for="name">
+                お名前 <span class="required">必須</span>
+              </label>
+              <input type="text" id="name" name="name" class="form-input"
+                     placeholder="山田 花子" autocomplete="name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">
+                メールアドレス <span class="required">必須</span>
+              </label>
+              <input type="email" id="email" name="email" class="form-input"
+                     placeholder="hanako@example.com" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="tel">
+                お電話番号
+              </label>
+              <input type="tel" id="tel" name="tel" class="form-input"
+                     placeholder="090-0000-0000" autocomplete="tel">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="type">
+                ご相談の種類 <span class="required">必須</span>
+              </label>
+              <select id="type" name="type" class="form-select" required>
+                <option value="" disabled selected>選択してください</option>
+                <option value="counseling">無料カウンセリング予約</option>
+                <option value="menu">施術メニューについて</option>
+                <option value="price">料金について</option>
+                <option value="reservation">ご予約の変更・キャンセル</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">
+                お問い合わせ内容 <span class="required">必須</span>
+              </label>
+              <textarea id="message" name="message" class="form-textarea"
+                        placeholder="ご希望の施術内容・お悩み・ご希望の日時などをご記入ください。" rows="6" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-check">
+                <input type="checkbox" name="privacy" id="privacy" required>
+                <span class="form-check-label">
+                  <a href="#" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意する
+                </span>
+              </label>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn-submit">送信する</button>
+            </div>
+
+            <p class="form-note">
+              ※送信後、2営業日以内に登録メールアドレスへご連絡いたします。<br>
+              ※ご予約状況によってはご希望に沿えない場合がございます。あらかじめご了承ください。<br>
+              ※お電話でのご予約: <strong>03-XXXX-XXXX</strong>（11:00〜19:00、不定休）
+            </p>
+          </form>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="contact-info">
+          <div class="contact-info-card">
+            <h3>Clinic Info</h3>
+            <p>
+              <strong>住所</strong><br>
+              東京都港区南青山3-XX-XX<br>
+              ÉCLAT Building 4F<br><br>
+              <strong>電話</strong><br>
+              03-XXXX-XXXX<br><br>
+              <strong>最寄り駅</strong><br>
+              表参道駅 A4出口 徒歩3分
+            </p>
+          </div>
+          <div class="contact-info-card">
+            <h3>Hours</h3>
+            <div class="contact-hours">
+              <div class="hours-row">
+                <span class="hours-day">月・火・木・金</span>
+                <span class="hours-time">11:00 – 20:00</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">水・土・日</span>
+                <span class="hours-time">10:00 – 18:00</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">休診日</span>
+                <span class="hours-time">不定休</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <h3>First Visit</h3>
+            <p>
+              初回カウンセリングは<br>
+              <strong>AI肌分析込みで完全無料。</strong><br><br>
+              予約不要でもご来院いただけますが、待ち時間短縮のためオンライン予約をおすすめしております。
+            </p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Access
+       ============================================ -->
+  <section class="access-section bg-alt">
+    <div class="container">
+      <div class="en-label">Access</div>
+      <h2 class="section-title">アクセス</h2>
+      <div class="access-grid">
+        <div class="access-map" aria-label="クリニック周辺地図（外部マップリンクで確認ください）">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Google Map</span>
+          <small style="font-size:11px;opacity:.6;letter-spacing:.08em;font-family:var(--sans-jp);">※架空住所のためマップ非表示</small>
+        </div>
+        <div class="access-info">
+          <p>表参道エリアに佇む、完全プライベートクリニック。<br>緑豊かな南青山の路地に位置し、ゆとりある空間でお迎えします。</p>
+          <div class="access-detail">
+            <span class="access-detail-label">Address</span>
+            <span class="access-detail-value">東京都港区南青山3-XX-XX<br>ÉCLAT Building 4F</span>
+          </div>
+          <div class="access-detail">
+            <span class="access-detail-label">Station</span>
+            <span class="access-detail-value">東京メトロ銀座線・千代田線・半蔵門線<br>「表参道」駅 A4出口より徒歩約3分</span>
+          </div>
+          <div class="access-detail">
+            <span class="access-detail-label">Tel</span>
+            <span class="access-detail-value">03-XXXX-XXXX</span>
+          </div>
+          <div class="access-detail">
+            <span class="access-detail-label">Hours</span>
+            <span class="access-detail-value">月〜金 11:00 – 20:00<br>土・日 10:00 – 18:00<br>（不定休）</span>
+          </div>
+          <div class="access-detail">
+            <span class="access-detail-label">Parking</span>
+            <span class="access-detail-value">専用駐車場なし。近隣コインパーキングをご利用ください。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Footer
+       ============================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-text">ÉCLAT CLINIC</div>
+          <div class="tagline">輝きは、肌の奥から。</div>
+          <p>東京都港区南青山3-XX-XX<br>ÉCLAT Building 4F<br>Tel. 03-XXXX-XXXX<br>営業時間 11:00 – 20:00（不定休）</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="LINE">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.508.43-.595.06-.024.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="./menu.html">ピコレーザー</a></li>
+            <li><a href="./menu.html">医療HIFU</a></li>
+            <li><a href="./menu.html">医療ハイドラ</a></li>
+            <li><a href="./menu.html">ボトックス</a></li>
+            <li><a href="./menu.html">ヒアルロン酸</a></li>
+            <li><a href="./menu.html">AI肌分析</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <ul>
+            <li><a href="./about.html">コンセプト</a></li>
+            <li><a href="./about.html">ドクター紹介</a></li>
+            <li><a href="./voice.html">お客様の声</a></li>
+            <li><a href="./price.html">料金表</a></li>
+            <li><a href="./price.html">よくある質問</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="./contact.html">無料カウンセリング</a></li>
+            <li><a href="./contact.html">お問い合わせ</a></li>
+            <li><a href="./contact.html">アクセス</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">特定商取引法</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        ※本サイトはポートフォリオ用の架空サンプルです。実在のクリニック・施術内容・人物とは一切関係ありません。
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ÉCLAT CLINIC (Sample). All Rights Reserved.</span>
+        <span>PORTFOLIO SAMPLE</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
